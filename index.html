@@ -16,7 +16,7 @@
 		<div ng-controller="listpokem">
             <input type="text" placeholder="number pokemon" ng-model="filtre">
 
-            <select ng-model="select">
+            <select>
                 <option ng-repeat="pokemon in mypokemonlist | filter :filtre">
                     {{pokemon.name}}
                 </option>
@@ -29,7 +29,7 @@
 		<!-- Search Pekemon in API by Resources -->
         <div ng-controller="listpokeappi">
             <input type="text" placeholder="number pokemon">
-            <select>
+            <select ng-model="select">
                 <option ng-repeat="pokemon in resultatresource">
                     {{pokemon.name}}
                 </option>
