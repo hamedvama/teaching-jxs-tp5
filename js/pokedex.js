@@ -39,4 +39,29 @@ pokeApp.controller('listpokeappi', ['$scope', 'pokeresource', '$log', function (
         $scope.resultatresource = value.results;
         $log.warn($scope.resultatresource);
     });
-}]);
+}])
+
+pokeApp.controller('reqhttp', function ($scope, $http) {
+    $http({
+        method : "GET",
+        url : "https://pokeapi.co/api/v2/pokemon/"
+    }).then(function mySuccess(response) {
+        $scope.resultat = response.data.results;
+        console.log("les objets")
+        console.log($scope.resultat);
+    }, function eError(response) {
+        $scope.resultat = response.statusText;
+    });
+    $scope.fselectionner = function () {
+        console.log($scope.selectionner.url);
+        $http({
+            method : 'GET',
+            url : $scope.selectionner.url
+        }).then(function mySuccess(response) {
+            $scope.resultatp = response.data.moves;
+            console.log($scope.resultatp);
+        }, function eError(response) {
+            $scope.resultatp = response.statusText;
+        })
+    }
+})

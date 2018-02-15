@@ -16,7 +16,7 @@
 		<div ng-controller="listpokem">
             <input type="text" placeholder="number pokemon" ng-model="filtre">
 
-            <select>
+            <select ng-model="select">
                 <option ng-repeat="pokemon in mypokemonlist | filter :filtre">
                     {{pokemon.name}}
                 </option>
@@ -36,6 +36,24 @@
             </select>
         </div>
         <hr>
+
+        <!-- Search Pekemon in API by Http -->
+        <div ng-controller="reqhttp">
+            <input type="text" placeholder="number pokemon" ng-model="alpha">
+            <select ng-options="pokemon as pokemon.name for pokemon in resultat" ng-model="selectionner">
+                {{pokemon.name}}
+            </select>
+
+            <!-- Pokémon information -->
+            <h1>le nom du pokemon est : {{selectionner.name}} <br>
+                url : {{selectionner.url}}</h1><br>
+
+            <button ng-click="fselectionner()"> Afficher les attaques</button><br>
+            <ul>
+                <li ng-repeat=" move in resultatp"> {{move}}</li>
+            </ul>
+
+        </div>
 
 	</div>
 
