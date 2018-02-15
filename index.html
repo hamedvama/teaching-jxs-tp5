@@ -13,10 +13,29 @@
 		<h1>Pokésir</h1>
 
 		<!-- Search -->
-		<div></div>
+		<div ng-controller="listpokem">
+            <input type="text" placeholder="number pokemon" ng-model="filtre">
 
-		<!-- Pokémon information -->
-		<div></div>
+            <select ng-model="select">
+                <option ng-repeat="pokemon in mypokemonlist | filter :filtre">
+                    {{pokemon.name}}
+                </option>
+            </select>
+
+            <button ng-click="selection()"> OK </button>
+        </div>
+        <hr>
+
+		<!-- Search Pekemon in API by Resources -->
+        <div ng-controller="listpokeappi">
+            <input type="text" placeholder="number pokemon">
+            <select>
+                <option ng-repeat="pokemon in resultatresource">
+                    {{pokemon.name}}
+                </option>
+            </select>
+        </div>
+        <hr>
 
 	</div>
 
