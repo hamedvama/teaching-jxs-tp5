@@ -31,11 +31,11 @@
                 </section>
                 <section class="col-lg-6">
                     <!-- Search and print pokemon name in the console -->
-                    <div  ng-controller= "pokemonSearch">
+                    <div  ng-controller= "listpokem">
                         <label class="control-label">Recherche dans une liste</label></br>
                         <input type="text" ng-model="query"/>
-                        <select ng-options="pokemon as pokemon.name for pokemon in pokemons|filter:{name:query}" ng-model="selection"> </select>
-                        <button class="btn btn-primary" ng-click="logInfo()">Go !</button>
+                        <select ng-options="pokemon as pokemon.name for pokemon in pokemons|filter:{name:query}" ng-model="select"> </select>
+                        <button class="btn btn-primary" ng-click="selection()">Go !</button>
                         <p></p>
                         <ul class="list-group">
                             <li class="list-group-item">Id: {{selection.id}} </li>

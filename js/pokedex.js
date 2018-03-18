@@ -7,6 +7,8 @@ pokeApp.config(['$resourceProvider', function($resourceProvider) {
     $resourceProvider.defaults.stripTrailingSlashes = false;
 }]);
 
+<!-- Contrôleur apermettant le data binding entre l'id saisi et le model -->
+
 pokeApp.controller('pokNum',['$scope','$log', function($scope,$log) {
         {$log.log($scope.id);
         };
@@ -15,15 +17,14 @@ pokeApp.controller('pokNum',['$scope','$log', function($scope,$log) {
 
 <!-- Contrôleur avec une liste de pokemon initialisée pour le test -->
 pokeApp.controller('listpokem', ['$scope', '$log', function ($scope, $log) {
-    $scope.mypokemonlist = [{"id": "1", "name": "sangoku"},
-        {"id": "2", "name": "vegeta"},
-        {"id": "3", "name": "bougboug"},
-        {"id": "4", "name": "berus"},
-        {"id": "5", "name": "sangoten"}]
-
-    //apres le bouton ok
-    $scope.selection = function(){
+    $scope.pokemons=[{id: '1', name: 'pidgeot'},{id:'2',name:'charmander'},{id:'3',name:'charizard'},{id:'4',name:'wartortle'},
+        {id:'5',name:'blastoise'},{id:'6',name:'butterfree'},{id: '7', name: 'pidgey'}];
+    //le  clic sur le bouton ok dans la vue renvoie vers cette methode qui affiche le pokemenon selectionné sur la consolebouton
+        $scope.selection = function(){
+        $log.info($scope.select);
         $log.warn($scope.select);
+        $log.log($scope.select);
+
     }
 }]);
 <!-- Resources permettant d'acceder a l'API pokemon -->
