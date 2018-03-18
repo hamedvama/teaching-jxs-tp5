@@ -174,14 +174,3 @@ pokeApp.service("serviceCommun", function(){
 
 });
 
-pokeApp.controller('controleur',['$scope', function($scope,$log) {
-    {
-
-    };
-}]);
-
-pokeApp.directive('directivePokemon', function() {
-    return {
-        templateUrl:'directive.html'
-    };
-});
