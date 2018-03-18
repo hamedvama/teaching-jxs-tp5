@@ -172,5 +172,16 @@ pokeApp.service("serviceCommun", function(){
         return this.c;
     };
 
-})
-;
+});
+
+pokeApp.controller('controleur',['$scope', function($scope,$log) {
+    {
+
+    };
+}]);
+
+pokeApp.directive('directivePokemon', function() {
+    return {
+        templateUrl:'directive.html'
+    };
+});
