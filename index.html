@@ -9,53 +9,103 @@
 </head>
 <body ng-app="pokedex">
 
-	<div class="container">
-		<h1>Pokésir</h1>
 
-		<!-- Search -->
-		<div ng-controller="listpokem">
-            <input type="text" placeholder="number pokemon" ng-model="filtre">
 
-            <select ng-model="select">
-                <option ng-repeat="pokemon in mypokemonlist | filter :filtre">
-                    {{pokemon.name}}
-                </option>
-            </select>
+<p></p>
 
-            <button ng-click="selection()"> OK </button>
-        </div>
-        <hr>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">POKEDEX </div>
+        <div class="panel-body">
+            <div class="row">
 
-		<!-- Search Pekemon in API by Resources -->
-        <div ng-controller="listpokeappi">
-            <input type="text" placeholder="number pokemon">
-            <select ng-model="select">
-                <option ng-repeat="pokemon in resultatresource">
-                    {{pokemon.name}}
-                </option>
-            </select>
-        </div>
-        <hr>
 
-        <!-- Search Pekemon in API by Http -->
-        <div ng-controller="reqhttp">
-            <input type="text" placeholder="number pokemon" ng-model="alpha">
-            <select ng-options="pokemon as pokemon.name for pokemon in resultat" ng-model="selectionner">
-                {{pokemon.name}}
-            </select>
 
-            <!-- Pokémon information -->
-            <h1>le nom du pokemon est : {{selectionner.name}} <br>
-                url : {{selectionner.url}}</h1><br>
+                <section class="col-lg-6">
+                    <!-- Search and print pokemon name in the console -->
+                    <div  ng-controller= "pokemonSearch">
+                        <label class="control-label">Recherche d'un Pokemon Via son numero</label></br>
+                        <input type="text" ng-model="id"/>
+                        <p></p>
+                        <ul class="list-group">
+                            <li class="list-group-item">Id: {{id}} </li>
+                        </ul>
+                    </div>
+                </section>
+                <section class="col-lg-6">
+                    <!-- Search and print pokemon name in the console -->
+                    <div  ng-controller= "pokemonSearch">
+                        <label class="control-label">Recherche dans une liste</label></br>
+                        <input type="text" ng-model="query"/>
+                        <select ng-options="pokemon as pokemon.name for pokemon in pokemons|filter:{name:query}" ng-model="selection"> </select>
+                        <button class="btn btn-primary" ng-click="logInfo()">Go !</button>
+                        <p></p>
+                        <ul class="list-group">
+                            <li class="list-group-item">Id: {{selection.id}} </li>
+                            <li class="list-group-item">name: {{selection.name}} </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col-lg-6">
 
-            <button ng-click="fselectionner()"> Afficher les attaques</button><br>
-            <ul>
-                <li ng-repeat=" move in resultatp"> {{move}}</li>
-            </ul>
+                    <!-- get Pokemon information to an external API with service $ressource ---->
+                    <div ng-controller= "PokemonByRessource">
+                        <label class="control-label">Acces à une API distante</label> <input type="text" ng-model="quey">
+                        <select ng-options="pokemon as pokemon.name for pokemon in pokApi |filter:{name:quey}"
+                                ng-model="select"> </select>
+                        <p></p>
+                        <ul class="list-group">
+                            <li class="list-group-item">Id: {{pok.data.id}} </li>
+                            <li class="list-group-item">name: {{pok.data.name}} </li>
+                            <li class="list-group-item">Height: {{pok.data.height}} </li>
+                            <li class="list-group-item">Weight: {{pok.data.weight}} </li>
+                            <li class="list-group-item">Attaques : {{pok.data.moves.length}} </li>
 
-        </div>
+                            <li class="list-group-item">Image: <img src ="{{pok.data.sprites.back_default}}" /></li>
 
-	</div>
+                        </ul>
+                    </div>
+                </section>
+
+
+
+
+                <section class="col-lg-6">
+
+                    <div ng-controller="PokemonSet">
+                        <label class="control-label">Communication entre controlleurs</label> <input type="text" ng-model="quey">
+                        <select ng-options="pokemon as pokemon.name for pokemon in poks |filter:{name:quey}"
+                                ng-model="selected"> </select>
+                    </div>
+                    <p></p>
+                    <div ng-controller="PokemonGet">
+                        <ul class="list-group">
+                            <li class="list-group-item">Id: {{InfoPok.data.id}} </li>
+                            <li class="list-group-item">name: {{InfoPok.data.name}} </li>
+                            <li class="list-group-item">Height: {{InfoPok.data.height}} </li>
+                            <li class="list-group-item">Weight: {{InfoPok.data.weight}} </li>
+
+                            <li class="list-group-item">Attaques : {{InfoPok.data.moves.length}} </li>
+
+                            <li class="list-group-item">Image: <img src ="{{InfoPok.data.sprites.back_default}}"/></li>
+
+                        </ul>
+                    </div>
+                </section>
+
+
+
+
+
+
+
+
+            </div></div>
+    </div>
+
+</body>
 
     <!-- Dependencies -->
     <script src="js/jquery.min.js"></script>

@@ -1,25 +1,24 @@
-var pokeApp = angular.module('pokedex', ['ngResource']);
+var pokeApp = angular.module('POKEDEX', ['ngResource']);
 
 // With this you can inject POKEAPI url wherever you want
-pokeApp.constant('POKEAPI', 'http://pokeapi.co');
+pokeApp.constant('POKEDEX', 'http://pokeapi.co');
 
 pokeApp.config(['$resourceProvider', function($resourceProvider) {
     $resourceProvider.defaults.stripTrailingSlashes = false;
 }])
 
-<!-- Contrôleur avec une liste de pokemon initialisée pour le test -->
-pokeApp.controller('listpokem', ['$scope', '$log', function ($scope, $log) {
-    $scope.mypokemonlist = [{"id": "1", "name": "sangoku"},
-        {"id": "2", "name": "vegeta"},
-        {"id": "3", "name": "bougboug"},
-        {"id": "4", "name": "berus"},
-        {"id": "5", "name": "sangoten"}]
 
-    //apres le bouton ok
-    $scope.selection = function(){
-        $log.warn($scope.select);
-    }
+<!-- Contrôleur avec une liste de pokemon initialisée pour le test -->
+
+.controller('pokemonSearch',['$scope','$log', function($scope,$log) {
+    $scope.pokemons=[{id: '1', name: 'pidgeot'},{id:'2',name:'charmander'},{id:'3',name:'charizard'},{id:'4',name:'wartortle'},
+        {id:'5',name:'blastoise'},{id:'6',name:'butterfree'},{id: '7', name: 'pidgey'}];
+    $scope.logInfo = function()
+    {$log.log($scope.selection);
+        $log.info($scope.selection);
+    };
 }])
+
 <!-- Resources permettant d'acceder a l'API pokemon -->
 pokeApp.factory('pokeresource', function ($resource) {
     return $resource('https://pokeapi.co/api/v2/pokemon/:pokeid', {pokeid: '@id'},
@@ -64,4 +63,4 @@ pokeApp.controller('reqhttp', function ($scope, $http) {
             $scope.resultatp = response.statusText;
         })
     }
-})
+});
