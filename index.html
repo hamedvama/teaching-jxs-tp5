@@ -19,9 +19,9 @@
         <div class="panel-body">
             <div class="row">
                 <section class="col-lg-6">
-                    <!-- Search and print pokemon name in the console -->
+                    <!-- Recherche d'un Pokemon Via son numero -->
                     <div  ng-controller= "pokNum">
-                        <label class="control-label">Recherche d'un Pokemon Via son numero</label></br>
+                        <label class="control-label">Recherche d'un Pokemon Via son numero</label>
                         <input type="text" ng-model="id"/>
                         <p></p>
                         <ul class="list-group">
@@ -30,16 +30,17 @@
                     </div>
                 </section>
                 <section class="col-lg-6">
-                    <!-- Search and print pokemon name in the console -->
+
+                    <!-- Recherche dans une liste -->
                     <div  ng-controller= "listpokem">
-                        <label class="control-label">Recherche dans une liste</label></br>
+                        <label class="control-label">Recherche dans une liste</label>
                         <input type="text" ng-model="query"/>
                         <select ng-options="pokemon as pokemon.name for pokemon in pokemons|filter:{name:query}" ng-model="select"> </select>
                         <button class="btn btn-primary" ng-click="selection()">Go !</button>
                         <p></p>
                         <ul class="list-group">
-                            <li class="list-group-item">Id: {{selection.id}} </li>
-                            <li class="list-group-item">name: {{selection.name}} </li>
+                            <li class="list-group-item">Id: {{select.id}} </li>
+                            <li class="list-group-item">name: {{select.name}} </li>
                         </ul>
                     </div>
                 </section>
@@ -47,11 +48,12 @@
             <div class="row">
                 <section class="col-lg-6">
 
-                    <!-- get Pokemon information to an external API with service $ressource ---->
+                    <!-- Acces à une API distante-->
+                    
                     <div ng-controller= "PokemonByRessource">
                         <label class="control-label">Acces à une API distante</label> <input type="text" ng-model="quey">
                         <select ng-options="pokemon as pokemon.name for pokemon in pokApi |filter:{name:quey}"
-                                ng-model="select"> </select>
+                                ng-model="select"></select>
                         <p></p>
                         <ul class="list-group">
                             <li class="list-group-item">Id: {{pok.data.id}} </li>
@@ -59,7 +61,6 @@
                             <li class="list-group-item">Height: {{pok.data.height}} </li>
                             <li class="list-group-item">Weight: {{pok.data.weight}} </li>
                             <li class="list-group-item">Attaques : {{pok.data.moves.length}} </li>
-
                             <li class="list-group-item">Image: <img src ="{{pok.data.sprites.back_default}}" /></li>
 
                         </ul>
@@ -101,17 +102,18 @@
 
             </div></div>
     </div>
+</div>
 
-</body>
+  </body>
 
-    <!-- Dependencies -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/angular.min.js"></script>
-    <script src="js/angular-resource.min.js"></script>
+<!-- Dependencies -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-resource.min.js"></script>
 
-    <!-- Pokedex app -->
-    <script src="js/pokedex.js"></script>
+<!-- Pokedex app -->
+<script src="js/pokedex.js"></script>
 
 
 </body>
