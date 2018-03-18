@@ -120,29 +120,12 @@ pokeApp.controller('PokemonByRessource',['$scope','$log','pokService','$http', f
 
 }]);
 
-<!-- definition d'un sevice commun qui va servir de communication entre deux controlleurs-->
 
-pokeApp.service("serviceCommun", function(){
-    var c;
-    var obs;
-    this.Obs= function() {
-        return this.obs = this.c;
-    }.bind (this);
-    this.setC = function(c){
-        this.c = c;
-        return  this.Obs();
-    }.bind(this);
 
-    this.getC = function(){
-        return this.c;
-    };
-
-})
-;
 
 <!-- controlleur permettant la recupération des pokemons à l'aide du service $ressource puis l'affectation du pokemeon selectionné à une variable du serviceCommun-->
 
-pokeApp.controller('PokemonSet',['$scope','PokeService', 'serviceCommun',function($scope,PokeService,serviceCommun) {
+pokeApp.controller('PokemonSet',['$scope','pokService', 'serviceCommun',function($scope,PokeService,serviceCommun) {
 
     PokeService.queryAll().$promise.then(function(value) {
         $scope.poks = value.results;
@@ -170,3 +153,24 @@ pokeApp.controller('PokemonGet',['$scope','serviceCommun','$http',function($scop
             console.log($scope.InfoPok);
         });
     }]);
+
+
+<!-- definition d'un sevice commun qui va servir de communication entre deux controlleurs-->
+
+pokeApp.service("serviceCommun", function(){
+    var c;
+    var obs;
+    this.Obs= function() {
+        return this.obs = this.c;
+    }.bind (this);
+    this.setC = function(c){
+        this.c = c;
+        return  this.Obs();
+    }.bind(this);
+
+    this.getC = function(){
+        return this.c;
+    };
+
+})
+;
