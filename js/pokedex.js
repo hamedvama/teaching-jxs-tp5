@@ -17,7 +17,9 @@ pokeApp.controller('listpokem', ['$scope', '$log', function ($scope, $log) {
         {id: '5', name: 'blastoise'},
         {id: '6', name: 'butterfree'},
         {id: '7', name: 'pidgey'}];
-    //le  clic sur le bouton ok dans la vue renvoie vers cette methode qui affiche le pokemenon selectionné sur la consolebouton
+
+    //le  clic sur le bouton ok dans la vue renvoie vers cette methode qui affiche le pokemenon selectionné
+    // Test du service $log
     $scope.selection = function () {
         $log.info($scope.select);
         $log.warn($scope.select);
@@ -65,12 +67,6 @@ pokeApp.controller('listpokeappi', ['$scope', 'pokService', '$log', function ($s
         $scope.resultatresource = value.results;
         $log.warn($scope.resultatresource);
     });
-}])
-;
-
-<!-- Contrôleur permettant le data binding entre l'id saisi et le model -->
-
-pokeApp.controller('pokNum', ['$scope', function ($scope) {
 
 }]);
 
@@ -96,6 +92,10 @@ pokeApp.controller('PokemonByRessource', ['$scope', '$log', 'pokService', '$http
         $scope.url = $scope.select.url;
         $http.get($scope.url).then(function (data) {
             $scope.pok = data;
+            $scope.lesmoves = data.moves;
+            for(i=0; i<lesmoves.length; i++){
+                console.log(lesmoves[i].move.name);
+            }
             console.log($scope.pok);
         }, function (data) {
             document.getElementById("erreur").innerHTML = "Erreur lors de l'appel du json"
@@ -115,7 +115,6 @@ pokeApp.controller('PokemonSet', ['$scope', 'pokService', 'serviceCommun', funct
     });
     $scope.$watch('selected', function () {
         serviceCommun.setC($scope.selected);
-
 
     });
 
